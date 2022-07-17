@@ -1,0 +1,100 @@
+{
+	"items": [
+	{
+		"id": "A3ADE977-67F9-7D43-DC1E-DA5F81202699",
+		"title": "ornare placerat,",
+		"description": "nascetur ridiculus mus. Odio tristique pharetra",
+		"category": "food",
+		"img": "/dogfoodone.jpg",
+		"price": "20.00 \u20ac"
+	},
+	{
+		"id": "1A20FE5B-2A77-FE36-D4B3-E09F860688E3",
+		"title": "in faucibus",
+		"description": "odio tristique pharetra. Quisque ac libero nec ligula consectetuer",
+		"category": "food",
+		"img": "/dogfoodtwo.jpg",
+		"price": "23.00 \u20ac"
+	},
+	{
+		"id": "593CAD15-581D-514A-3956-565A5671272B",
+		"title": "non quam.",
+		"description": "vitae, sodales at, velit. Pellentesque ultricies",
+		"category": "food",
+		"img": "/dogfoodthree.jpg",
+		"price": "25.00 \u20ac"
+	},
+	{
+		"id": "2D86D36C-F4FC-578D-139E-5B5C940E9A20",
+		"title": "sapien, cursus",
+		"description": "nascetur ridiculus mus. Odio tristique pharetra",
+		"category": "toys",
+		"img": "/dogtoyone.jpg",
+		"price": "10.00 \u20ac"
+	},
+	{
+		"id": "DCE10D7D-3987-EE3E-6E17-75FC38D23ECA",
+		"title": "adipiscing elit.",
+		"description": "vel est tempor bibendum. Donec felis orci, adipiscing non, luctus",
+		"category": "toys",
+		"img": "/dogtoytwo.jpg",
+		"price": "19.00 \u20ac"
+	},
+	{
+		"id": "438A43D5-A392-8B54-32BA-458A46292172",
+		"title": "Duis gravida.",
+		"description": "eget magna. Suspendisse tristique neque",
+		"category": "toys",
+		"img": "/dogtoythree.jpg",
+		"price": "19.20 \u20ac"
+	},
+	{
+		"id": "22574763-4E41-506D-7382-1713E578436A",
+		"title": "faucibus orci",
+		"description": "sem ut dolor dapibus gravida. Aliquam",
+		"category": "food",
+		"img": "/foodone.jpg",
+		"price": "20.00 \u20ac"
+	},
+	{
+		"id": "13A3DD4D-460D-C87C-A4F4-56B21C35E815",
+		"title": "Ut semper",
+		"description": "nascetur ridiculus mus. Odio tristique pharetra",
+		"category": "food",
+		"img": "/foodtwo.jpg",
+		"price": "10.00 \u20ac"
+	},
+	{
+		"id": "41F64B2A-F29E-C1F7-DD2A-2025A4B4D9D6",
+		"title": "pellentesque massa",
+		"description": "nascetur ridiculus mus. Odio tristique pharetra",
+		"category": "food",
+		"img": "/foodthree.jpg",
+		"price": "60.99 \u20ac"
+	},
+	{
+		"id": "26575A26-B2FA-23B6-2E21-78C048B1B26C",
+		"title": "viverra. Donec",
+		"description": "diam at pretium aliquet, metus urna convallis",
+		"category": "toys",
+		"img": "/cattoyone.jpg",
+		"price": "50.99 \u20ac"
+	},
+	{
+		"id": "B9E7DC9C-3155-E39B-8AD6-8B063609937E",
+		"title": "mus. Donec",
+		"description": "nascetur ridiculus mus. Odio tristique pharetra",
+		"category": "toys",
+		"img":"/cattoytwo.jpg",
+		"price": "40.00 \u20ac"
+	},
+	{
+		"id": "A006711C-6238-1D0E-172B-B0FE52074A7C",
+		"title": "vitae, orci.",
+		"description": "nascetur ridiculus mus. Odio tristique pharetra.",
+		"category": "toys",
+		"img": "/cattoythree.jpg",
+		"price": "30.00 \u20ac"
+	}
+]
+}

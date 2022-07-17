@@ -76,7 +76,7 @@ const HomePage = () => (
                     </Typography>
 
                     <Box sx={{ display: 'flex', gap: 3, marginTop: 12 }}>
-                        <Button variant="contained" sx={{ backgroundColor: '#e65100', minWidth: 160, height: 48 }}>SHOPE</Button>
+                        <Button variant="contained" sx={{ backgroundColor: '#e65100', minWidth: 160, height: 48 }}>SHOP</Button>
                         <Button variant="contained" sx={{ backgroundColor: '#e65100', minWidth: 160, height: 48 }}>DONATE/ADOPT</Button>
                     </Box>
                 </Content>
