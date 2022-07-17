@@ -19,7 +19,6 @@ const Link = styled(NavLink)(({ theme }) => ({
 
   '&.active': {
     boxShadow: `inset 0 -2px 0 ${theme.palette.common.white}`,
-    backgroundColor: '#0000007d',
   },
 
   ':hover': {

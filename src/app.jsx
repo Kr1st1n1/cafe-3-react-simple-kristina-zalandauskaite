@@ -10,6 +10,7 @@ import ShopPage from './pages/shop-page';
 import AdoptDonatePage from './pages/adopt-page';
 import ErrorPage from './pages/error-page';
 
+
 const App = () => (
   <BrowserRouter>
     <Navbar />
