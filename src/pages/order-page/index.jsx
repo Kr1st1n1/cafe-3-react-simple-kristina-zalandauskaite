@@ -5,42 +5,35 @@ import {
   Box,
   TextField,
   MenuItem,
-  Slider,
-  Autocomplete,
   Button,
+  FormControlLabel,
+  Checkbox,
 } from '@mui/material';
 
-const currencies = [
-  {
-    value: 'USD',
-    label: '$',
-  },
-  {
-    value: 'EUR',
-    label: '€',
-  },
-  {
-    value: 'BTC',
-    label: '฿',
-  },
-  {
-    value: 'JPY',
-    label: '¥',
-  },
-];
-
 const cities = [
-  { city: 'Vilnius' },
-  { city: 'Kaunas' },
-  { city: 'Šiauliai' },
-  { city: 'Vilnius' },
+  {
+    value: 'Vilnius',
+    label: 'Vilnius',
+  },
+  {
+    value: 'Kaunas',
+    label: 'Kaunas',
+  },
+  {
+    value: 'Šiauliai',
+    label: 'Šiauliai',
+  },
+  {
+    value: 'Klaipdėda',
+    label: 'Klaipdėda',
+  },
 ];
 
 const OrderPage = () => {
   const [fullname, setFullname] = React.useState();
   const [email, setEmail] = React.useState();
-  const [currency, setCurrency] = React.useState(currencies[0].value);
-  const [qty, setQty] = React.useState();
+  const [city, setCity] = React.useState(cities[0].value);
+  const [agreement, setAgreement] = React.useState(true);
 
   return (
     <Box>
@@ -51,7 +44,7 @@ const OrderPage = () => {
           p: 3,
           width: 500,
           mx: 'auto',
-          bgcolor: 'lightgrey',
+          bgcolor: 'white',
         }}
       >
         <Box
@@ -59,12 +52,11 @@ const OrderPage = () => {
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
             gap: 3,
           }}
         >
           <Typography component="h1" variant="h5" align="center">
-            Įveskite/Pasirinkite duomenis
+            New Order
           </Typography>
           <TextField
             name="fullname"
@@ -83,34 +75,30 @@ const OrderPage = () => {
             value={email}
           />
           <TextField
-            name="currency"
+            name="City"
             select
-            label="currency"
+            label="City"
             variant="filled"
             fullWidth
-            onChange={(event) => setCurrency(event.target.value)}
-            value={currency}
+            onChange={(event) => setCity(event.target.value)}
+            value={city}
           >
-            {currencies.map(
+            {cities.map(
               ({ value, label }) => <MenuItem key={value} value={value}>{label}</MenuItem>,
             )}
           </TextField>
-          <Slider
-            size="small"
-            name="qty"
-            defaultValue={10}
-            valueLabelDisplay="auto"
-            onChange={(event) => setQty(event.target.value)}
-            value={qty}
-          />
-          <Autocomplete
-            disablePortal
-            id="combo-box-demo"
-            options={cities}
-            sx={{ width: 300 }}
-            renderInput={(city) => <TextField city={city} label="City" />}
-          />
-          <Button type="submit" variant="contained" size="large">Submit</Button>
+          <Box sx={{ alignItems: 'left' }}>
+            <FormControlLabel
+              control={(
+                <Checkbox
+                  checked={agreement}
+                  onChange={(_, AgreementTerms) => setAgreement(AgreementTerms)}
+                />
+          )}
+              label="I accept the terms of service"
+            />
+          </Box>
+          <Button type="submit" variant="contained" size="large">Next</Button>
         </Box>
       </Paper>
     </Box>
