@@ -8,6 +8,11 @@ import {
   Button,
   FormControlLabel,
   Checkbox,
+  Autocomplete,
+  FormLabel,
+  FormControl,
+  RadioGroup,
+  Radio,
 } from '@mui/material';
 
 const cities = [
@@ -29,11 +34,34 @@ const cities = [
   },
 ];
 
+const deliveryMethods = [
+  {
+    id: '1',
+    label: 'I will pick it up by myself',
+  },
+  {
+    id: '2',
+    label: 'Deliver to post maschine',
+  },
+  {
+    id: '3',
+    label: 'Deliver by courier to the specified address',
+  },
+];
+
+const genders = [
+  { value: 'female', label: 'Ms.' },
+  { value: 'male', label: 'Mr.' },
+  { value: 'other', label: 'Other' },
+];
+
 const OrderPage = () => {
   const [fullname, setFullname] = React.useState();
   const [email, setEmail] = React.useState();
   const [city, setCity] = React.useState(cities[0].value);
   const [agreement, setAgreement] = React.useState(true);
+  const [delivery, setDelivery] = React.useState();
+  const [gender, setGender] = React.useState(null);
 
   return (
     <Box>
@@ -98,6 +126,48 @@ const OrderPage = () => {
               label="I accept the terms of service"
             />
           </Box>
+          <Box align="center">
+            <Autocomplete
+              disablePortal
+              options={deliveryMethods}
+              value={delivery}
+              onChange={(_, newDelivery) => setDelivery(newDelivery)}
+              sx={{ width: '100%' }}
+              renderInput={({
+                InputLabelProps,
+                InputProps,
+                inputProps,
+                disabled,
+                fullWidth,
+                id,
+                size,
+              }) => (
+                <TextField
+                  label="Delivery method"
+                  InputLabelProps={InputLabelProps}
+                  InputProps={InputProps}
+                  inputProps={inputProps}
+                  disabled={disabled}
+                  fullWidth={fullWidth}
+                  id={id}
+                  size={size}
+                />
+              )}
+            />
+          </Box>
+          <FormControl>
+            <FormLabel>Kreipinys</FormLabel>
+            <RadioGroup
+              sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}
+              name="gender"
+              value={gender}
+              onChange={(_, newGender) => setGender(newGender)}
+            >
+              {genders.map(({ value, label }) => (
+                <FormControlLabel value={value} control={<Radio />} label={label} />
+              ))}
+            </RadioGroup>
+          </FormControl>
           <Button type="submit" variant="contained" size="large">Next</Button>
         </Box>
       </Paper>

@@ -1,8 +1,13 @@
 import * as React from 'react';
 import {
-  Grid, Typography, Container, Box,
+  Grid,
+  Typography,
+  Container,
+  Box,
 } from '@mui/material';
-import { ItemCard } from './components';
+import { ItemCard, Filters } from './components';
+
+const drawerWidth = 300;
 
 const ShopPage = () => {
   const [items, setItems] = React.useState([]);
@@ -32,6 +37,7 @@ const ShopPage = () => {
           Thank you...
         </Typography>
       </Box>
+      <Filters drawerWidth={drawerWidth} />
       <Grid container spacing={2} sx={{ py: 3, px: 2 }}>
         {items.map(({
           id,
