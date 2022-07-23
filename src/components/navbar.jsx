@@ -24,9 +24,8 @@ const Link = styled(NavLink)(({ theme }) => ({
   ':hover': {
     backgroundColor: theme.palette.primary.dark,
     color: theme.palette.common.white,
-  }
+  },
 }));
-
 
 const pages = [
   { text: 'HOME', to: '/' },
@@ -34,27 +33,24 @@ const pages = [
   { text: 'DONATE/ADOPT', to: '/adopt' },
 ];
 
-const Navbar = () => {
-  return (
-    <AppBar position="static">
-      <Toolbar sx={{justifyContent: 'flex-end' }}>
+const Navbar = () => (
+  <AppBar position="static">
+    <Toolbar sx={{ justifyContent: 'flex-end' }}>
 
       <IconButton
-          size="large"
-          edge="start"
-          color="inherit"
-          sx={{ display: { sm: 'none' } }}
-        >
+        size="large"
+        edge="start"
+        color="inherit"
+        sx={{ display: { sm: 'none' } }}
+      >
         <MenuIcon />
       </IconButton>
-        <Box sx={{ display: 'flex', alignSelf: 'stretch' }}>
-          {pages.map(({ text, to }) => <Link key={to} to={to}>{text}</Link>)}
-        </Box>
+      <Box sx={{ display: 'flex', alignSelf: 'stretch' }}>
+        {pages.map(({ text, to }) => <Link key={to} to={to}>{text}</Link>)}
+      </Box>
 
-      </Toolbar>
-    </AppBar>
-  )
-};
+    </Toolbar>
+  </AppBar>
+);
 
 export default Navbar;
-

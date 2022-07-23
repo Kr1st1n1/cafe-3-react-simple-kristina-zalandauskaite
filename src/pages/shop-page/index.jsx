@@ -1,52 +1,61 @@
-import * as React from 'react'
-import ItemCard from '../../components/card'
-import { Grid, Typography } from '@mui/material';
-import { Container, Box } from '@mui/system';
+import * as React from 'react';
+import {
+  Grid, Typography, Container, Box,
+} from '@mui/material';
+import { ItemCard } from './components';
 
 const ShopPage = () => {
-  const [items, setMugs] = React.useState([]);
+  const [items, setItems] = React.useState([]);
 
   React.useEffect(() => {
     fetch('http://localhost:8000/items')
-      .then(res => res.json())
-      .then(fetchedItems => setMugs(fetchedItems))
+      .then((res) => res.json())
+      .then((fetchedItems) => setItems(fetchedItems));
   }, []);
 
   return (
-
     <Container>
       <Box sx={{
         display: 'flex',
         flexDirection: 'column',
         textAlign: 'center',
         m: 2,
-        p: 10
-        }}>
-        <Typography variant="h3" component="h2" sx={{ py: 3, px: 2 }}>
+      }}
+      >
+        <Typography variant="h3" component="h2" sx={{ py: 3 }}>
           10% of the paid amount is allocated to the animal shelter
         </Typography>
-        <Typography variant="p" component="div" sx={{ py: 3, px: 2 }}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam inventore, architecto similique in culpa quidem iste, cumque veniam dolor blanditiis voluptate necessitatibus veritatis sint asperiores harum corrupti hic optio maxime.
+        <Typography variant="p" component="div" sx={{ py: 3 }}>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam inventore
         </Typography>
         <Typography variant="h4" component="p">
           Thank you...
         </Typography>
       </Box>
       <Grid container spacing={2} sx={{ py: 3, px: 2 }}>
-        {items.map(el => (
-          <Grid key={el.id} item xs={12} sm={6} md={4} lg={3} xl={3}>
-            <ItemCard {...el} />
+        {items.map(({
+          id,
+          title,
+          description,
+          category,
+          img,
+          price,
+        }) => (
+          <Grid key={id} item xs={12} sm={6} md={4} lg={3} xl={3}>
+            <ItemCard
+              id={id}
+              title={title}
+              description={description}
+              category={category}
+              img={img}
+              price={price}
+            />
           </Grid>
         ))}
       </Grid>
 
     </Container>
-
-
-
-
-
   );
-}
+};
 
 export default ShopPage;

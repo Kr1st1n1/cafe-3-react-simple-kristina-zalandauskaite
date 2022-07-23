@@ -1,7 +1,7 @@
-import * as React from 'react'
+import * as React from 'react';
 
-const AdoptDonatePage= () => (
+const AdoptDonatePage = () => (
   <div>Adopt</div>
-)
+);
 
-export default AdoptDonatePage
+export default AdoptDonatePage;
