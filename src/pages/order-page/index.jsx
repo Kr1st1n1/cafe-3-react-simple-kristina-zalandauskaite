@@ -9,7 +9,6 @@ import {
   FormControlLabel,
   Checkbox,
   Autocomplete,
-  FormLabel,
   FormControl,
   RadioGroup,
   Radio,
@@ -156,7 +155,6 @@ const OrderPage = () => {
             />
           </Box>
           <FormControl>
-            <FormLabel>Kreipinys</FormLabel>
             <RadioGroup
               sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}
               name="gender"

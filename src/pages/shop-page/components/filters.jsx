@@ -9,10 +9,22 @@ import {
   FormControl,
 } from '@mui/material';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import CheckboxGroup from '../../../components/checkbox-group';
+
+const itemChosenTypes = [
+  { id: '1', label: 'Food' },
+  { id: '2', label: 'Toys' },
+];
+const foodChosenTypes = [
+  { id: '1', label: 'Cat food' },
+  { id: '2', label: 'Dogs food' },
+];
 
 const Filters = ({ drawerWidth }) => {
   const [drawer, setDrawer] = React.useState(false);
   const [priceRange, setPriceRange] = React.useState([10, 110]);
+  const [itemChosen, setItemChosen] = React.useState([]);
+  const [foodTypes, setFoodTypes] = React.useState([]);
 
   return (
     <>
@@ -53,8 +65,19 @@ const Filters = ({ drawerWidth }) => {
             </Box>
           </FormControl>
           <Divider sx={{ my: 2 }} />
-
         </Box>
+        <CheckboxGroup
+          label="Filter By"
+          options={itemChosenTypes}
+          value={itemChosen}
+          onChange={(_, newItemChosenTypes) => setItemChosen(newItemChosenTypes)}
+        />
+        <CheckboxGroup
+          label="Filter By"
+          options={foodChosenTypes}
+          value={foodTypes}
+          onChange={(_, newItemChosenTypes) => setFoodTypes(newItemChosenTypes)}
+        />
       </Drawer>
     </>
   );
