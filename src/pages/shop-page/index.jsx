@@ -19,7 +19,7 @@ const ShopPage = () => {
   }, []);
 
   return (
-    <Container>
+    <Container sx={{ top: 0 }}>
       <Box sx={{
         display: 'flex',
         flexDirection: 'column',

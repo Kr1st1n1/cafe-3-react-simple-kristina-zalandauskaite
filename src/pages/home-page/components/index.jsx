@@ -25,7 +25,7 @@ export const Content = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'right',
-  color: theme.palette.warning.light,
+  color: theme.palette.primary.light,
   width: 650,
   height: '80%',
   gap: theme.spacing(5),
@@ -36,7 +36,7 @@ export const Footer = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   flexDirection: 'row',
-  color: theme.palette.warning.light,
+  color: theme.palette.secondary.main,
   background: theme.palette.primary.main,
 }));
 

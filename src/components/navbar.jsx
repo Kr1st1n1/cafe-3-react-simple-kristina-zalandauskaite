@@ -7,7 +7,8 @@ import {
   styled,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { NavLink } from 'react-router-dom';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Link = styled(NavLink)(({ theme }) => ({
   display: 'flex',
@@ -15,7 +16,7 @@ const Link = styled(NavLink)(({ theme }) => ({
   alignItems: 'center',
   padding: theme.spacing(0, 3),
   textDecoration: 'none',
-  color: theme.palette.grey[200],
+  color: theme.palette.secondary.main,
 
   '&.active': {
     boxShadow: `inset 0 -2px 0 ${theme.palette.common.white}`,
@@ -33,24 +34,35 @@ const pages = [
   { text: 'DONATE/ADOPT', to: '/adopt' },
 ];
 
-const Navbar = () => (
-  <AppBar position="static">
-    <Toolbar sx={{ justifyContent: 'flex-end' }}>
+const Navbar = () => {
+  const navigate = useNavigate();
 
-      <IconButton
-        size="large"
-        edge="start"
-        color="inherit"
-        sx={{ display: { sm: 'none' } }}
-      >
-        <MenuIcon />
-      </IconButton>
-      <Box sx={{ display: 'flex', alignSelf: 'stretch' }}>
-        {pages.map(({ text, to }) => <Link key={to} to={to}>{text}</Link>)}
-      </Box>
+  return (
+    <AppBar position="static">
+      <Toolbar sx={{ justifyContent: 'flex-end' }}>
 
-    </Toolbar>
-  </AppBar>
-);
+        <IconButton
+          size="large"
+          edge="start"
+          color="inherit"
+          sx={{ display: { sm: 'none' } }}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Box sx={{ display: 'flex', alignSelf: 'stretch' }}>
+          {pages.map(({ text, to }) => <Link key={to} to={to}>{text}</Link>)}
+        </Box>
 
+        <IconButton
+          size="large"
+          edge="end"
+          color="inherit"
+          onClick={() => navigate('/cart')}
+        >
+          <ShoppingBasketIcon />
+        </IconButton>
+      </Toolbar>
+    </AppBar>
+  );
+};
 export default Navbar;
