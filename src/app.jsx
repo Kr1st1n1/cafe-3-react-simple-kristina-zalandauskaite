@@ -9,23 +9,24 @@ import HomePage from './pages/home-page';
 import ShopPage from './pages/shop-page';
 import AdoptDonatePage from './pages/adopt-page';
 import ErrorPage from './pages/error-page';
-import OrderPage from './pages/order-page';
 import CartPage from './pages/cart-page';
 import CartContext from './contexts/cart-context';
 
 const App = () => {
-  const [cartItems, setI] = React.useState([]);
+  const [cartItems, setItem] = React.useState([]);
 
   const cartContextValue = React.useMemo(() => ({
     cartItems,
     addToCart: (item) => {
       if (cartItems.find((x) => x.id === item.id)) {
-        setI(cartItems.map((x) => (x.id === item.id ? { ...x, count: item.count } : x)));
+        setItem(cartItems.map((x) => (x.id === item.id ? { ...x, count: item.count } : x)));
       } else {
-        setI([...cartItems, item]);
+        setItem([...cartItems, item]);
       }
     },
     getItemCount: (id) => cartItems.find((x) => x.id === id)?.count ?? 0,
+
+    deleteItem: (id) => setItem(cartItems.filter((x) => x.id !== id)),
   }), [cartItems]);
 
   return (
@@ -37,7 +38,6 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/shop" element={<ShopPage />} />
           <Route path="/adopt" element={<AdoptDonatePage />} />
-          <Route path="/order" element={<OrderPage />} />
           <Route path="/cart" element={<CartPage />} />
 
           <Route path="*" element={<ErrorPage />} />

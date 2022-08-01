@@ -12,7 +12,7 @@ export const Background = styled(Box)({
 
 export const Container = styled(Box)({
   position: 'absolute',
-  top: 0,
+  top: 60,
   left: 0,
   height: '100%',
   width: '100%',

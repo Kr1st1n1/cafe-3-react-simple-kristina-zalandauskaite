@@ -35,7 +35,7 @@ const HomePage = () => (
             expedita
             rem recusandae! Aut?
           </Typography>
-          <Box sx={{ display: 'flex', gap: 3, marginTop: 12 }}>
+          <Box sx={{ display: 'flex', gap: 4 }}>
             <Link to="/shop" style={{ textDecoration: 'none' }}>
               <Home.ButtonLink variant="contained">
                 SHOP

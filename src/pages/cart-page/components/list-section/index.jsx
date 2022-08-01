@@ -110,7 +110,7 @@ const ListSection = ({ width }) => {
           }}
           >
             <Typography variant="h6">TOTAL COST:</Typography>
-            <Typography variant="h6">156.14$</Typography>
+            <Typography variant="h6">1111111</Typography>
           </Box>
         </Box>
       </Box>

@@ -2,12 +2,12 @@ import React from 'react';
 import {
   Box,
   FormControlLabel,
+  TextField,
   Checkbox,
   Autocomplete,
   FormControl,
   Divider,
 } from '@mui/material';
-import { TextFieldDark } from '../../../../../components/dark';
 
 const deliveryMethods = [
   {
@@ -59,7 +59,7 @@ const OrderFields = ({
           id,
           size,
         }) => (
-          <TextFieldDark
+          <TextField
             label="Delivery method"
             InputLabelProps={InputLabelProps}
             InputProps={InputProps}

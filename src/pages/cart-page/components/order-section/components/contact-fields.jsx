@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  TextField,
   MenuItem,
   FormControlLabel,
   FormControl,
@@ -7,7 +8,6 @@ import {
   Radio,
   Divider,
 } from '@mui/material';
-import { TextFieldDark } from '../../../../../components/dark';
 
 const cities = [
   {
@@ -47,7 +47,7 @@ const ContactFields = ({
   <>
     <Divider textAlign="left">Contact information</Divider>
 
-    <TextFieldDark
+    <TextField
       name="fullname"
       label="fullname"
       variant="filled"
@@ -55,7 +55,7 @@ const ContactFields = ({
       onChange={(event) => setFullname(event.target.value)}
       value={fullname}
     />
-    <TextFieldDark
+    <TextField
       name="email"
       label="email"
       variant="filled"
@@ -63,7 +63,7 @@ const ContactFields = ({
       onChange={(event) => setEmail(event.target.value)}
       value={email}
     />
-    <TextFieldDark
+    <TextField
       name="City"
       select
       label="City"
@@ -75,7 +75,7 @@ const ContactFields = ({
       {cities.map(
         ({ value, label }) => <MenuItem key={value} value={value}>{label}</MenuItem>,
       )}
-    </TextFieldDark>
+    </TextField>
 
     <FormControl sx={{ width: '100%' }}>
       <RadioGroup

@@ -27,13 +27,13 @@ const ShopPage = () => {
         m: 2,
       }}
       >
-        <Typography variant="h3" component="h2" sx={{ py: 3 }}>
-          10% of the paid amount is allocated to the animal shelter
+        <Typography variant="h4" component="h2" sx={{ py: 3 }}>
+          Everything big starts with something little
         </Typography>
         <Typography variant="p" component="div" sx={{ py: 3 }}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam inventore
+          10% of the paid amount is allocated to the animal shelter
         </Typography>
-        <Typography variant="h4" component="p">
+        <Typography variant="h5" component="p">
           Thank you...
         </Typography>
       </Box>
@@ -46,6 +46,7 @@ const ShopPage = () => {
           category,
           img,
           price,
+          currency,
         }) => (
           <Grid key={id} item xs={12} sm={6} md={4} lg={3} xl={3}>
             <ItemCard
@@ -55,6 +56,7 @@ const ShopPage = () => {
               category={category}
               img={img}
               price={price}
+              currency={currency}
             />
           </Grid>
         ))}
