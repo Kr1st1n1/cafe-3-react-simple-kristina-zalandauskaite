@@ -48,7 +48,14 @@ const Item = ({
         <Button
           size="small"
           sx={{
-            p: 0, height: 30, width: 30, minWidth: 0, borderRadius: 0, boxShadow: 'none',
+            p: 0,
+            height: 30,
+            width: 30,
+            minWidth: 0,
+            borderRadius: 0,
+            boxShadow: 'none',
+            fontSize: 20,
+            color: 'red',
           }}
         >
           -
@@ -66,7 +73,14 @@ const Item = ({
         <Button
           size="small"
           sx={{
-            p: 0, height: 30, width: 30, minWidth: 0, borderRadius: 0, boxShadow: 'none',
+            p: 0,
+            height:
+            30,
+            width: 30,
+            minWidth: 0,
+            borderRadius: 0,
+            boxShadow: 'none',
+            fontSize: 20,
           }}
         >
           +
@@ -86,7 +100,7 @@ const Item = ({
           height: 30, display: 'flex', alignSelf: 'center',
         }}
       >
-        <DeleteIcon />
+        <DeleteIcon sx={{ color: '#1C3879', fontSize: 30 }} />
       </IconButton>
     </Box>
   </Box>

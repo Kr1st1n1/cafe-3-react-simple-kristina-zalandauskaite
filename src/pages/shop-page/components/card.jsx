@@ -64,9 +64,6 @@ const ItemCard = ({
           size="small"
           variant="contained"
           onClick={() => addToCart({ id })}
-          sx={{
-            backgroundColor: '#e65100',
-          }}
         >
           Add to cart
 

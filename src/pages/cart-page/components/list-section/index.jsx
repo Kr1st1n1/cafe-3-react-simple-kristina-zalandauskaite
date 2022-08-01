@@ -39,10 +39,14 @@ const ListSection = ({ width }) => {
 
   return (
     <Box sx={{ mr: `${width}px` }}>
-      <Box sx={{ m: 8, p: 5, backgroundColor: '#f3eded6b' }}>
+      <Box sx={{ m: 8, p: 5 }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Typography variant="h5">Shopping Cart</Typography>
-          <ShoppingCartIcon />
+          <ShoppingCartIcon sx={{ color: '#1C3879', fontSize: 45 }} />
+        </Box>
+        <Box sx={{ display: 'flex', gap: 2 }}>
+          <KeyboardBackspaceIcon fontSize="large" />
+          <Typography variant="h6">Continue Shopping</Typography>
         </Box>
         <Divider sx={{ pt: 3, pb: 3 }} />
         <Box sx={{
@@ -97,10 +101,6 @@ const ListSection = ({ width }) => {
           mt: 5,
         }}
         >
-          <Box sx={{ display: 'flex', gap: 2 }}>
-            <KeyboardBackspaceIcon fontSize="large" />
-            <Typography variant="h6">Continue Shopping</Typography>
-          </Box>
 
           <Box sx={{
             display: 'flex',

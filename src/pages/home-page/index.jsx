@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {
   Box,
-  Button,
   Typography,
 } from '@mui/material';
 
@@ -32,29 +31,20 @@ const HomePage = () => (
           <Typography variant="h6" sx={{ textAlign: 'left' }}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint,
             exercitationem.Dolor quas eaque esse tempora illo nemo,
-            rem corporis aperiam itaque quos.Incidunt tempore hic accusamus expedita
+            rem corporis aperiam itaque quos.Incidunt tempore hic accusamus
+            expedita
             rem recusandae! Aut?
           </Typography>
           <Box sx={{ display: 'flex', gap: 3, marginTop: 12 }}>
             <Link to="/shop" style={{ textDecoration: 'none' }}>
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: '#E2DCC8', color: 'black', minWidth: 160, height: 48,
-                }}
-              >
+              <Home.ButtonLink variant="contained">
                 SHOP
-              </Button>
+              </Home.ButtonLink>
             </Link>
             <Link to="/adopt" style={{ textDecoration: 'none' }}>
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: '#E2DCC8', color: 'black', minWidth: 160, height: 48,
-                }}
-              >
+              <Home.ButtonLink variant="contained">
                 DONATE/ADOPT
-              </Button>
+              </Home.ButtonLink>
             </Link>
           </Box>
         </Home.Content>

@@ -1,4 +1,4 @@
-import { Box, styled } from '@mui/material';
+import { Box, Button, styled } from '@mui/material';
 
 export const Background = styled(Box)({
   position: 'absolute',
@@ -25,8 +25,8 @@ export const Content = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'right',
-  color: theme.palette.primary.light,
-  width: 650,
+  color: 'white',
+  width: 750,
   height: '80%',
   gap: theme.spacing(5),
   margin: 50,
@@ -44,4 +44,14 @@ export const IconContent = styled(Box)(({ theme }) => ({
   gap: theme.spacing(5),
   display: 'flex',
   flexDirection: 'row',
+}));
+
+export const ButtonLink = styled(Button)(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'center',
+  minWidth: 160,
+  height: 48,
+  flexDirection: 'row',
+  color: theme.palette.secondary.main,
+  background: theme.palette.primary.main,
 }));

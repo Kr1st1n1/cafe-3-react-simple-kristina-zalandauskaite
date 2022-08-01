@@ -44,10 +44,10 @@ const lightTheme = createTheme(mixinTheme, {
     background: {
       default: '#F1F1F1',
     },
-    primary: createColor('#E2DCC8'),
-    secondary: createColor('#100F0F'),
-    common: createColor('#0F3D3E'),
-    success: createColor('#F1F1F1'),
+    primary: createColor('#1C3879'),
+    secondary: createColor('#EAE3D2'),
+    common: createColor('#F9F5EB'),
+    success: createColor('#607EAA'),
 
   },
 });
