@@ -4,33 +4,14 @@ import {
   Box,
   Toolbar,
   IconButton,
-  styled,
-  Typography,
   Divider,
   List,
   Drawer,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import { NavLink, useNavigate } from 'react-router-dom';
-
-const Link = styled(NavLink)(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  padding: theme.spacing(0, 3),
-  textDecoration: 'none',
-  color: theme.palette.secondary.main,
-
-  '&.active': {
-    boxShadow: `inset 0 -2px 0 ${theme.palette.common.white}`,
-  },
-
-  ':hover': {
-    backgroundColor: theme.palette.primary.dark,
-    color: theme.palette.common.white,
-  },
-}));
+import { useNavigate } from 'react-router-dom';
+import * as Nav from './components';
 
 const pages = [
   { text: 'HOME', to: '/' },
@@ -51,38 +32,57 @@ const Navbar = () => {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        Čia bus krepšelis
-      </Typography>
+      <IconButton
+        sx={{
+          mx: 4,
+          px: 2,
+        }}
+        size="large"
+        edge="end"
+        color="inherit"
+        onClick={() => navigate('/cart')}
+      >
+        <ShoppingBasketIcon sx={{
+          color: 'white',
+          fontSize: 24,
+        }}
+        />
+      </IconButton>
       <Divider />
       <List sx={{
         display: 'flex',
         flexDirection: 'column',
         gap: 3,
-        color: '#1C3879',
       }}
       >
-        {pages.map(({ text, to }) => <Link key={to} to={to}>{text}</Link>)}
+        {pages.map(({ text, to }) => <Nav.Link key={to} to={to} contracted>{text}</Nav.Link>)}
       </List>
     </Box>
   );
 
   return (
     <>
-      <AppBar position="static">
-        <Toolbar sx={{ justifyContent: 'flex-end' }}>
+      <AppBar
+        position="static"
+        sx={{
+          px: { md: 24, xxl: 36, xs: 12 },
+        }}
+      >
+        <Toolbar sx={{
+          justifyContent: 'space-between',
+        }}
+        >
           <IconButton
             size="large"
             edge="start"
             color="inherit"
-            backgroundColor="#1C3879"
             onClick={handleDrawerToggle}
-            sx={{ display: { sm: 'none' } }}
+            sx={{ display: { sm: 'none', xs: 'flex' } }}
           >
             <MenuIcon />
           </IconButton>
-          <Box sx={{ display: 'flex', alignSelf: 'stretch' }}>
-            {pages.map(({ text, to }) => <Link key={to} to={to}>{text}</Link>)}
+          <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignSelf: 'stretch' }}>
+            {pages.map(({ text, to }) => <Nav.Link key={to} to={to}>{text}</Nav.Link>)}
           </Box>
 
           <IconButton
@@ -108,8 +108,8 @@ const Navbar = () => {
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: drawerWidth,
+              backgroundColor: '#1C3879',
             },
-
           }}
         >
           {drawer}

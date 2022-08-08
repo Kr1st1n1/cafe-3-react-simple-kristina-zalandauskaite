@@ -7,7 +7,7 @@ import {
 import { ContactFields, Container, OrderFields } from './components';
 
 const OrderSection = ({ width }) => {
-  const [fullname, setFullname] = React.useState();
+  const [fullname, setFullname] = React.useState('');
   const [email, setEmail] = React.useState();
   const [city, setCity] = React.useState('');
   const [agreement, setAgreement] = React.useState(true);

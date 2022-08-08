@@ -48,6 +48,7 @@ const OrderFields = ({
         disablePortal
         options={deliveryMethods}
         value={delivery}
+        key={delivery}
         onChange={(_, newDelivery) => setDelivery(newDelivery)}
         sx={{ width: '100%' }}
         renderInput={({

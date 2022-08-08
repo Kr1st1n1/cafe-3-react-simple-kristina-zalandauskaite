@@ -13,20 +13,22 @@ import CartPage from './pages/cart-page';
 import CartContext from './contexts/cart-context';
 
 const App = () => {
-  const [cartItems, setItem] = React.useState([]);
+  const [cartItems, setItems] = React.useState([]);
 
   const cartContextValue = React.useMemo(() => ({
     cartItems,
+
     addToCart: (item) => {
       if (cartItems.find((x) => x.id === item.id)) {
-        setItem(cartItems.map((x) => (x.id === item.id ? { ...x, count: item.count } : x)));
+        setItems(cartItems.map((x) => (x.id === item.id ? { ...x, count: item.count } : x)));
       } else {
-        setItem([...cartItems, item]);
+        setItems([...cartItems, item]);
       }
     },
     getItemCount: (id) => cartItems.find((x) => x.id === id)?.count ?? 0,
 
-    deleteItem: (id) => setItem(cartItems.filter((x) => x.id !== id)),
+    deleteItem: (id) => setItems(cartItems.filter((x) => x.id !== id)),
+
   }), [cartItems]);
 
   return (

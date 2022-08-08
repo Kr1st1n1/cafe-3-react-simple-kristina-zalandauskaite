@@ -6,7 +6,7 @@
 			"description": "nascetur ridiculus mus. Odio tristique pharetra",
 			"category": "food",
 			"img": "/dogfoodone.jpg",
-			"price": 70.00,
+			"price": 70.59,
 			"currency": "€"
 		},
 		{
@@ -15,7 +15,7 @@
 			"description": "odio tristique pharetra. Quisque ac libero nec ligula consectetuer",
 			"category": "food",
 			"img": "/dogfoodtwo.jpg",
-			"price": 60.00,
+			"price": 60.29,
 			"currency": "€"
 		},
 		{
@@ -24,7 +24,7 @@
 			"description": "vitae, sodales at, velit. Pellentesque ultricies",
 			"category": "food",
 			"img": "/dogfoodthree.jpg",
-			"price": 20.00,
+			"price": 20.55,
 			"currency": "€"
 		},
 		{
@@ -42,7 +42,7 @@
 			"description": "vel est tempor bibendum. Donec felis orci, adipiscing non, luctus",
 			"category": "toys",
 			"img": "/dogtoytwo.jpg",
-			"price": 20.00,
+			"price": 20.063,
 			"currency": "€"
 		},
 		{

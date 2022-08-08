@@ -6,7 +6,7 @@ import {
 } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
-import { Item } from './components';
+import { Item, Footer } from './components';
 import CartContext from '../../../../contexts/cart-context';
 
 const fetchItem = async ({ id, count }) => {
@@ -25,21 +25,28 @@ const fetchCartItems = async (cartItems) => {
   return items;
 };
 
-const ListSection = ({ width }) => {
-  const { cartItems: cartItemsData } = React.useContext(CartContext);
+const ListSection = () => {
+  const { cartItems: cartItemsData, deleteItem } = React.useContext(CartContext);
   const [cartItems, setCartItems] = React.useState([]);
+
+  const totalPrice = cartItems.reduce((prevSum, { count, price }) => prevSum + count * price, 0);
 
   React.useEffect(() => {
     (async () => {
       const fetchedItems = await fetchCartItems(cartItemsData);
-
       setCartItems(fetchedItems);
     })();
   }, [cartItemsData]);
 
   return (
-    <Box sx={{ mr: `${width}px` }}>
-      <Box sx={{ m: 8, p: 5 }}>
+    <Box sx={{
+      display: 'flex', alignself: 'center', width: '100%', flexDirection: 'column',
+    }}
+    >
+      <Box sx={{
+        display: 'flex', alignself: 'center', flexDirection: 'column',
+      }}
+      >
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Typography variant="h5">Shopping Cart</Typography>
           <ShoppingCartIcon sx={{ color: '#1C3879', fontSize: 45 }} />
@@ -57,24 +64,27 @@ const ListSection = ({ width }) => {
         }}
         >
           <Typography variant="h6">Product details</Typography>
-          <Box
-            minWidth={405}
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-around',
-              pt: 2,
-              pb: 2,
-            }}
-          >
-            <Typography variant="h6">Qty</Typography>
-            <Typography variant="h6">Price</Typography>
-            <Typography variant="h6">Total</Typography>
-            <Typography variant="h6">Remove</Typography>
+          <Box sx={{ display: 'flex', justifyContent: 'right' }}>
+            <Box
+              minWidth={420}
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                pt: 2,
+                pb: 2,
+                gap: 12,
+              }}
+            >
+              <Typography variant="h6">Qty</Typography>
+              <Typography variant="h6">Price</Typography>
+              <Typography variant="h6">Total</Typography>
+              <Typography variant="h6">Remove</Typography>
+            </Box>
           </Box>
         </Box>
 
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'right' }}>
           {cartItems.map(({
             id,
             img,
@@ -90,29 +100,12 @@ const ListSection = ({ width }) => {
               count={count}
               price={price}
               category={category}
+              deleteItem={() => deleteItem(id)}
             />
           ))}
         </Box>
 
-        <Box sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          mt: 5,
-        }}
-        >
-
-          <Box sx={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            gap: 10,
-            px: 16,
-          }}
-          >
-            <Typography variant="h6">TOTAL COST:</Typography>
-            <Typography variant="h6">1111111</Typography>
-          </Box>
-        </Box>
+        <Footer totalPrice={totalPrice} />
       </Box>
     </Box>
   );

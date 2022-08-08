@@ -7,29 +7,39 @@ export const Background = styled(Box)({
   height: '100%',
   width: '100%',
   objectFit: 'cover',
-  opacity: 0.99,
+  opacity: 0.92,
 });
 
-export const Container = styled(Box)({
+export const Container = styled(Box)(({ theme }) => ({
   position: 'absolute',
-  top: 60,
+  top: 100,
   left: 0,
-  height: '100%',
   width: '100%',
+  maxWidth: 1400,
   display: 'flex',
   justifyContent: 'flex-start',
   alignItems: 'center',
-});
+  margin: '0 auto',
+  paddingLeft: 36,
+  paddingRight: 36,
+
+  [theme.breakpoints.down('xxl')]: {
+    margin: 'auto',
+  },
+}));
 
 export const Content = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'right',
   color: 'white',
-  width: 750,
-  height: '80%',
+  width: '40vw',
   gap: theme.spacing(5),
-  margin: 50,
+
+  [theme.breakpoints.down('xxl')]: {
+    margin: 0,
+    width: '80vh',
+  },
 }));
 
 export const Footer = styled(Box)(({ theme }) => ({
@@ -54,4 +64,8 @@ export const ButtonLink = styled(Button)(({ theme }) => ({
   flexDirection: 'row',
   color: theme.palette.secondary.main,
   background: theme.palette.primary.main,
+
+  [theme.breakpoints.down('xs')]: {
+    flexDirection: 'column',
+  },
 }));

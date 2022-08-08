@@ -16,8 +16,9 @@ const Item = ({
   img,
   price,
   category,
+  deleteItem,
 }) => {
-  const { getItemCount, deleteItem } = React.useContext(CartContext);
+  const { getItemCount } = React.useContext(CartContext);
   const itemCountInCart = getItemCount(id);
   const [count, setCount] = React.useState(itemCountInCart === 0 ? 1 : itemCountInCart);
 
@@ -107,19 +108,20 @@ const Item = ({
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>{`${price * count}`}</Box>
 
-        <IconButton
-          size="medium"
-          sx={{
-            height: 30, display: 'flex', alignSelf: 'center',
-          }}
-        >
-          <DeleteIcon
-            sx={{ color: '#1C3879', fontSize: 30 }}
-            onClick={() => deleteItem(id)}
-          />
-        </IconButton>
       </Box>
+      <IconButton
+        size="medium"
+        sx={{
+          height: 30, display: 'flex', alignSelf: 'center',
+        }}
+        onClick={deleteItem}
+      >
+        <DeleteIcon
+          sx={{ color: '#1C3879', fontSize: 30 }}
+        />
+      </IconButton>
     </Box>
+
   );
 };
 

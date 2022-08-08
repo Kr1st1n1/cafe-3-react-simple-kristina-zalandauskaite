@@ -82,10 +82,11 @@ const ContactFields = ({
         sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}
         name="gender"
         value={gender}
+        key={gender}
         onChange={(_, newGender) => setGender(newGender)}
       >
         {genders.map(({ value, label }) => (
-          <FormControlLabel value={value} control={<Radio />} label={label} />
+          <FormControlLabel key={value} value={value} control={<Radio />} label={label} />
         ))}
       </RadioGroup>
     </FormControl>
