@@ -20,6 +20,13 @@ const ItemCard = ({
   currency,
 }) => {
   const { addToCart } = React.useContext(CartContext);
+  const { getItemCount } = React.useContext(CartContext);
+  const itemCountInCart = getItemCount(id);
+  const [count, setCount] = React.useState(itemCountInCart === 0 ? 1 : itemCountInCart);
+
+  React.useEffect(() => {
+    setCount(itemCountInCart === 0 ? 1 : itemCountInCart);
+  }, [itemCountInCart]);
 
   return (
     <Card sx={{
@@ -69,7 +76,8 @@ const ItemCard = ({
         <Button
           size="small"
           variant="contained"
-          onClick={() => addToCart({ id })}
+          onClick={() => addToCart({ id, count })}
+          disabled={count === itemCountInCart}
         >
           Add to cart
 

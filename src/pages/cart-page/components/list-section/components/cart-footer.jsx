@@ -13,7 +13,7 @@ const Footer = ({ totalPrice }) => (
       mt: 5,
     }}
   >
-    {totalPrice > 0 && (
+
     <Box sx={{
       display: 'flex',
       justifyContent: 'flex-end',
@@ -24,7 +24,7 @@ const Footer = ({ totalPrice }) => (
       <Typography variant="h6">TOTAL COST:</Typography>
       <Typography variant="h6">{totalPrice.toFixed(2)}</Typography>
     </Box>
-    )}
+
   </Box>
 );
 

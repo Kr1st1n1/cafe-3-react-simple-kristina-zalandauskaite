@@ -1,15 +1,8 @@
 import * as React from 'react';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from 'react-router-dom';
-import Navbar from './components/navbar';
-import HomePage from './pages/home-page';
-import ShopPage from './pages/shop-page';
-import AdoptDonatePage from './pages/adopt-page';
-import ErrorPage from './pages/error-page';
-import CartPage from './pages/cart-page';
+import { BrowserRouter } from 'react-router-dom';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import PageRoutes from './pages/routes/page-routes';
 import CartContext from './contexts/cart-context';
 
 const App = () => {
@@ -32,20 +25,13 @@ const App = () => {
   }), [cartItems]);
 
   return (
-    <BrowserRouter>
-      <CartContext.Provider value={cartContextValue}>
-        <Navbar />
-
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/shop" element={<ShopPage />} />
-          <Route path="/adopt" element={<AdoptDonatePage />} />
-          <Route path="/cart" element={<CartPage />} />
-
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
-      </CartContext.Provider>
-    </BrowserRouter>
+    <LocalizationProvider dateAdapter={AdapterMoment}>
+      <BrowserRouter>
+        <CartContext.Provider value={cartContextValue}>
+          <PageRoutes />
+        </CartContext.Provider>
+      </BrowserRouter>
+    </LocalizationProvider>
   );
 };
 

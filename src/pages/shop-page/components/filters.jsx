@@ -50,7 +50,7 @@ const Filters = ({ drawerWidth }) => {
         onClose={() => setDrawer(false)}
       >
         <Box sx={{
-          display: 'flex', flexDirection: 'column', p: 6, gap: 3,
+          display: 'flex', flexDirection: 'column', p: 6, gap: 3, mt: 10,
         }}
         >
           <Box sx={{ width: drawerWidth }}>

@@ -26,10 +26,12 @@ const fetchCartItems = async (cartItems) => {
 };
 
 const ListSection = () => {
-  const { cartItems: cartItemsData, deleteItem } = React.useContext(CartContext);
+  const {
+    cartItems: cartItemsData,
+    addToCart,
+    deleteItem,
+  } = React.useContext(CartContext);
   const [cartItems, setCartItems] = React.useState([]);
-
-  const totalPrice = cartItems.reduce((prevSum, { count, price }) => prevSum + count * price, 0);
 
   React.useEffect(() => {
     (async () => {
@@ -37,6 +39,8 @@ const ListSection = () => {
       setCartItems(fetchedItems);
     })();
   }, [cartItemsData]);
+
+  const total = cartItems.reduce((prevSum, { count, price }) => prevSum + count * price, 0);
 
   return (
     <Box sx={{
@@ -89,8 +93,8 @@ const ListSection = () => {
             id,
             img,
             title,
-            count,
             price,
+            count,
             category,
           }) => (
             <Item
@@ -98,6 +102,7 @@ const ListSection = () => {
               img={img}
               title={title}
               count={count}
+              setCount={(newCount) => addToCart({ id, count: newCount })}
               price={price}
               category={category}
               deleteItem={() => deleteItem(id)}
@@ -105,7 +110,7 @@ const ListSection = () => {
           ))}
         </Box>
 
-        <Footer totalPrice={totalPrice} />
+        <Footer totalPrice={total} />
       </Box>
     </Box>
   );

@@ -4,24 +4,19 @@ export const Background = styled(Box)({
   position: 'absolute',
   top: 0,
   left: 0,
-  height: '100%',
+  height: '102%',
   width: '100%',
   objectFit: 'cover',
   opacity: 0.92,
 });
 
 export const Container = styled(Box)(({ theme }) => ({
-  position: 'absolute',
-  top: 100,
+  position: 'relative',
+  top: 0,
   left: 0,
-  width: '100%',
-  maxWidth: 1400,
+  right: 0,
   display: 'flex',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  margin: '0 auto',
-  paddingLeft: 36,
-  paddingRight: 36,
+  maxWidth: 1700,
 
   [theme.breakpoints.down('xxl')]: {
     margin: 'auto',
@@ -29,31 +24,15 @@ export const Container = styled(Box)(({ theme }) => ({
 }));
 
 export const Content = styled(Box)(({ theme }) => ({
+  paddingTop: 100,
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'right',
-  color: 'white',
-  width: '40vw',
-  gap: theme.spacing(5),
+  width: '100%',
+  height: '100%',
 
   [theme.breakpoints.down('xxl')]: {
-    margin: 0,
-    width: '80vh',
+    margin: 'auto',
   },
-}));
-
-export const Footer = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'center',
-  flexDirection: 'row',
-  color: theme.palette.secondary.main,
-  background: theme.palette.primary.main,
-}));
-
-export const IconContent = styled(Box)(({ theme }) => ({
-  gap: theme.spacing(5),
-  display: 'flex',
-  flexDirection: 'row',
 }));
 
 export const ButtonLink = styled(Button)(({ theme }) => ({
@@ -61,11 +40,29 @@ export const ButtonLink = styled(Button)(({ theme }) => ({
   justifyContent: 'center',
   minWidth: 160,
   height: 48,
-  flexDirection: 'row',
   color: theme.palette.secondary.main,
   background: theme.palette.primary.main,
 
   [theme.breakpoints.down('xs')]: {
     flexDirection: 'column',
   },
+}));
+
+export const Footer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  color: theme.palette.secondary.main,
+  background: theme.palette.primary.main,
+  position: 'fixed',
+  left: 0,
+  bottom: 0,
+  height: 64,
+  width: '100%',
+}));
+
+export const IconContent = styled(Box)(({ theme }) => ({
+  gap: theme.spacing(5),
+  display: 'flex',
+  flexDirection: 'row',
 }));

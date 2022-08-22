@@ -2,15 +2,15 @@ import * as React from 'react';
 import {
   AppBar,
   Box,
-  Toolbar,
   IconButton,
   Divider,
   List,
   Drawer,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from 'react-router-dom';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import * as Nav from './components';
 
 const pages = [
@@ -42,7 +42,7 @@ const Navbar = () => {
         color="inherit"
         onClick={() => navigate('/cart')}
       >
-        <ShoppingBasketIcon sx={{
+        <ShoppingCartIcon sx={{
           color: 'white',
           fontSize: 24,
         }}
@@ -56,6 +56,10 @@ const Navbar = () => {
       }}
       >
         {pages.map(({ text, to }) => <Nav.Link key={to} to={to} contracted>{text}</Nav.Link>)}
+        <Nav.Link to="/auth/login" contracted>
+          <PersonOutlineIcon />
+        </Nav.Link>
+        <Nav.Link to="/auth/register" contracted>REGISTER</Nav.Link>
       </List>
     </Box>
   );
@@ -63,15 +67,12 @@ const Navbar = () => {
   return (
     <>
       <AppBar
-        position="static"
+        position="fixed"
         sx={{
-          px: { md: 24, xxl: 36, xs: 12 },
+          px: { xs: 2, md: 12, xxl: 24 },
         }}
       >
-        <Toolbar sx={{
-          justifyContent: 'space-between',
-        }}
-        >
+        <Box sx={(theme) => theme.mixins.navbar}>
           <IconButton
             size="large"
             edge="start"
@@ -84,16 +85,37 @@ const Navbar = () => {
           <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignSelf: 'stretch' }}>
             {pages.map(({ text, to }) => <Nav.Link key={to} to={to}>{text}</Nav.Link>)}
           </Box>
+          <Box sx={{ display: 'flex' }}>
+            <IconButton
+              size="large"
+              edge="end"
+              color="inherit"
+              onClick={() => navigate('/cart')}
+            >
+              <ShoppingCartIcon />
+            </IconButton>
+            <Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
+              <Nav.Link to="/auth/login">
+                <PersonOutlineIcon sx={{
+                  color: 'white',
+                  fontSize: 27,
+                }}
+                />
 
-          <IconButton
-            size="large"
-            edge="end"
-            color="inherit"
-            onClick={() => navigate('/cart')}
-          >
-            <ShoppingBasketIcon />
-          </IconButton>
-        </Toolbar>
+              </Nav.Link>
+              <Nav.Link
+                to="/auth/register"
+                sx={{
+                  color: 'white',
+                  fontSize: 14,
+                }}
+              >
+                REGISTER
+
+              </Nav.Link>
+            </Box>
+          </Box>
+        </Box>
       </AppBar>
       <Box component="nav">
         <Drawer
@@ -108,7 +130,7 @@ const Navbar = () => {
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: drawerWidth,
-              backgroundColor: '#1C3879',
+              backgroundColor: 'black',
             },
           }}
         >

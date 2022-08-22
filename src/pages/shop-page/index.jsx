@@ -9,17 +9,30 @@ import { ItemCard, Filters } from './components';
 
 const drawerWidth = 300;
 
+const fetchAllItems = async () => {
+  const response = await fetch('http://localhost:8000/items');
+  const items = await response.json();
+
+  return items;
+};
+
 const ShopPage = () => {
   const [items, setItems] = React.useState([]);
 
-  React.useEffect(() => {
-    fetch('http://localhost:8000/items')
-      .then((res) => res.json())
-      .then((fetchedItems) => setItems(fetchedItems));
-  }, []);
+  const handleFetchItems = async () => {
+    const fetchedItems = await fetchAllItems();
+    setItems(fetchedItems);
+  };
+
+  const handleUpdateItems = async () => {
+    await handleFetchItems();
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  React.useEffect(() => { handleUpdateItems(); }, []);
 
   return (
-    <Container sx={{ top: 0 }}>
+    <Container maxWidth="false" sx={{ top: 0, maxWidth: 1500 }}>
       <Box sx={{
         display: 'flex',
         flexDirection: 'column',
@@ -48,7 +61,7 @@ const ShopPage = () => {
           price,
           currency,
         }) => (
-          <Grid key={id} item xs={12} sm={6} md={4} lg={3} xl={3}>
+          <Grid key={id} item xs={6} sm={6} md={4} lg={3} xl={2.25}>
             <ItemCard
               id={id}
               title={title}
@@ -57,6 +70,7 @@ const ShopPage = () => {
               img={img}
               price={price}
               currency={currency}
+              updateItem={handleUpdateItems}
             />
           </Grid>
         ))}

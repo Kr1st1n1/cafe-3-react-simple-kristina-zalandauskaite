@@ -23,16 +23,11 @@ const baseTheme = createTheme({
 
 const mixinTheme = createTheme(baseTheme, {
   mixins: {
-    toolbarOffset: {
-      marginTop: '56px',
-      [baseTheme.breakpoints.up('xs')]: {
-        '@media (orientation: landscape)': {
-          marginTop: '48px',
-        },
-      },
-      [baseTheme.breakpoints.up('sm')]: {
-        marginTop: '64px',
-      },
+    navbar: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      height: '64px',
+      padding: baseTheme.spacing(0, 2),
     },
   },
 });
@@ -44,7 +39,7 @@ const lightTheme = createTheme(mixinTheme, {
     background: {
       default: '#F1F1F1',
     },
-    primary: createColor('#1C3879'),
+    primary: createColor('#000000'),
     secondary: createColor('#EAE3D2'),
     common: createColor('#F9F5EB'),
     success: createColor('#607EAA'),
