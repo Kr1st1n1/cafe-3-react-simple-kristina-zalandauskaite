@@ -2,89 +2,111 @@ import * as React from 'react';
 import {
   Typography,
   Box,
-  Button,
-  Drawer,
   Divider,
   Slider,
   FormControl,
 } from '@mui/material';
-import FilterListIcon from '@mui/icons-material/FilterList';
+import { useSearchParams } from 'react-router-dom';
+import CategoryService from '../../../services/category-service';
+import FoodTypeService from '../../../services/foodtype-service';
 import CheckboxGroup from '../../../components/checkbox-group';
+import FilterDrawer from './filter-drawer';
 
-const itemChosenTypes = [
-  { id: '1', label: 'Food' },
-  { id: '2', label: 'Toys' },
-];
-const foodChosenTypes = [
-  { id: '1', label: 'Food for dogs' },
-  { id: '2', label: 'Food for cats' },
-];
+const MIN = 0;
+const MAX = 25;
 
 const Filters = ({ drawerWidth }) => {
-  const [drawer, setDrawer] = React.useState(false);
-  const [priceRange, setPriceRange] = React.useState([10, 110]);
-  const [itemChosen, setItemChosen] = React.useState([]);
-  const [foodTypes, setFoodTypes] = React.useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [categories, setCategories] = React.useState([]);
+  const [foodType, setFoodTypes] = React.useState([]);
+
+  const [priceRange, setPriceRange] = React.useState([MIN, MAX]);
+  const [selectedCategory, setSelctedCategory] = React.useState([]);
+  const [selectedFoodType, setSelectedFoodType] = React.useState([]);
+
+  const handlePriceRangeChange = (_, newPriceRange) => {
+    const [min, max] = newPriceRange;
+    if (min === MIN) {
+      searchParams.delete('price_gte');
+    } else {
+      searchParams.set('price_gte', min);
+    }
+    if (max === MAX) {
+      searchParams.delete('price_lte');
+    } else {
+      searchParams.set('price_lte', max);
+    }
+
+    setSearchParams(searchParams);
+    setPriceRange(newPriceRange);
+  };
+
+  const handleCategoryChange = (_, newCategory) => {
+    const ids = newCategory.map((category) => category.id);
+    searchParams.delete('categoryId');
+    ids.forEach((id) => searchParams.append('categoryId', id));
+
+    setSearchParams(searchParams);
+    setSelctedCategory(newCategory);
+  };
+
+  const handleFoodTypes = (_, newFoodType) => {
+    const ids = newFoodType.map((typeOfFood) => typeOfFood.id);
+    searchParams.delete('foodTypeId');
+    ids.forEach((id) => searchParams.append('foodTypeId', id));
+
+    setSearchParams(searchParams);
+    setSelectedFoodType(newFoodType);
+  };
+
+  React.useEffect(() => {
+    (async () => {
+      const [fetchedCategories, fetchedFoodTypes] = await Promise.all([
+        CategoryService.fetchAll(),
+        FoodTypeService.fetchAll(),
+      ]);
+      setCategories(fetchedCategories);
+      setFoodTypes(fetchedFoodTypes);
+    })();
+  }, []);
 
   return (
-    <>
-      <Button
-        size="large"
-        color="primary"
-        variant="contained"
-        sx={{
-          position: 'fixed',
-          zIndex: 5000,
-          bottom: 25,
-          right: 25,
-          height: 64,
-          width: 64,
-        }}
-        onClick={() => setDrawer(!drawer)}
+    <FilterDrawer>
+      <Box sx={{
+        display: 'flex', flexDirection: 'column', p: 6, gap: 3, mt: 10,
+      }}
       >
-        <FilterListIcon sx={{ color: 'common.white', fontSize: '2rem' }} />
-      </Button>
-      <Drawer
-        anchor="right"
-        open={drawer}
-        onClose={() => setDrawer(false)}
-      >
-        <Box sx={{
-          display: 'flex', flexDirection: 'column', p: 6, gap: 3, mt: 10,
-        }}
-        >
-          <Box sx={{ width: drawerWidth }}>
-            <Typography variant="h5">Filters</Typography>
-            <Divider sx={{ my: 2 }} />
-            <FormControl sx={{ width: '100%' }}>
-              <Typography variant="h7" sx={{ alignSelf: 'left', pb: 7 }}>Price range</Typography>
-              <Box>
-                <Slider
-                  valueLabelDisplay="on"
-                  value={priceRange}
-                  min={10}
-                  max={110}
-                  onChange={(_, newPriceRange) => setPriceRange(newPriceRange)}
-                />
-              </Box>
-            </FormControl>
-            <Divider sx={{ my: 2 }} />
-          </Box>
-          <CheckboxGroup
-            label="Filter By"
-            options={itemChosenTypes}
-            value={itemChosen}
-            onChange={(_, newItemChosenTypes) => setItemChosen(newItemChosenTypes)}
-          />
-          <CheckboxGroup
-            label="Filter By"
-            options={foodChosenTypes}
-            value={foodTypes}
-            onChange={(_, newItemChosenTypes) => setFoodTypes(newItemChosenTypes)}
-          />
+        <Box sx={{ width: drawerWidth }}>
+          <Typography variant="h5">Filters</Typography>
+          <Divider sx={{ my: 2 }} />
+          <FormControl sx={{ width: '100%' }}>
+            <Typography variant="h7" sx={{ alignSelf: 'left', pb: 7 }}>Price range</Typography>
+            <Box>
+              <Slider
+                valueLabelDisplay="on"
+                value={priceRange}
+                min={0}
+                max={25}
+                onChange={handlePriceRangeChange}
+              />
+            </Box>
+          </FormControl>
+          <Divider sx={{ my: 2 }} />
         </Box>
-      </Drawer>
-    </>
+        <CheckboxGroup
+          label="Filter By"
+          options={categories}
+          value={selectedCategory}
+          onChange={handleCategoryChange}
+        />
+        <CheckboxGroup
+          label="Filter By"
+          options={foodType}
+          value={selectedFoodType}
+          onChange={handleFoodTypes}
+        />
+      </Box>
+    </FilterDrawer>
   );
 };
 

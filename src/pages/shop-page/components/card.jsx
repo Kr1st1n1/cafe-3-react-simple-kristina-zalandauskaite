@@ -37,7 +37,7 @@ const ItemCard = ({
     }}
     >
       <Box>
-        <Typography variant="h7" component="div" sx={{ color: 'green', fontSize: 14, p: 1 }}>{category}</Typography>
+        <Typography variant="h7" component="div" sx={{ color: 'green', fontSize: 14, p: 1 }}>{[category.label]}</Typography>
         <Box sx={{
           position: 'relative',
           width: '100%',

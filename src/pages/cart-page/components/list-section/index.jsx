@@ -8,21 +8,17 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { Item, Footer } from './components';
 import CartContext from '../../../../contexts/cart-context';
+import CardService from '../../../../services/card-service';
 
-const fetchItem = async ({ id, count }) => {
-  const response = await fetch(`http://localhost:8000/items/${id}`);
-  const item = await response.json();
+const getFormattedItems = async (cartItemsData) => {
+  const idArr = cartItemsData.map((cartItem) => cartItem.id);
+  const fetchedCardItems = await CardService.fetchByIdArr(idArr);
+  const fetchedCardItemsWithCount = fetchedCardItems.map((fetchedCardItem) => ({
+    ...fetchedCardItem,
+    count: cartItemsData.find((cartItem) => cartItem.id === fetchedCardItem.id).count,
+  }));
 
-  return {
-    ...item,
-    count,
-  };
-};
-
-const fetchCartItems = async (cartItems) => {
-  const items = await Promise.all(cartItems.map((item) => fetchItem(item)));
-
-  return items;
+  return fetchedCardItemsWithCount;
 };
 
 const ListSection = () => {
@@ -35,8 +31,8 @@ const ListSection = () => {
 
   React.useEffect(() => {
     (async () => {
-      const fetchedItems = await fetchCartItems(cartItemsData);
-      setCartItems(fetchedItems);
+      const formattedCartItems = await getFormattedItems(cartItemsData);
+      setCartItems(formattedCartItems);
     })();
   }, [cartItemsData]);
 
@@ -104,7 +100,7 @@ const ListSection = () => {
               count={count}
               setCount={(newCount) => addToCart({ id, count: newCount })}
               price={price}
-              category={category}
+              category={[category.label]}
               deleteItem={() => deleteItem(id)}
             />
           ))}

@@ -5,22 +5,16 @@ import {
   Container,
   Box,
 } from '@mui/material';
+import CardService from '../../services/card-service';
 import { ItemCard, Filters } from './components';
 
 const drawerWidth = 300;
-
-const fetchAllItems = async () => {
-  const response = await fetch('http://localhost:8000/items');
-  const items = await response.json();
-
-  return items;
-};
 
 const ShopPage = () => {
   const [items, setItems] = React.useState([]);
 
   const handleFetchItems = async () => {
-    const fetchedItems = await fetchAllItems();
+    const fetchedItems = await CardService.fetchAll();
     setItems(fetchedItems);
   };
 
@@ -29,7 +23,7 @@ const ShopPage = () => {
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  React.useEffect(() => { handleUpdateItems(); }, []);
+  React.useEffect(() => { handleFetchItems(); }, []);
 
   return (
     <Container maxWidth="false" sx={{ top: 0, maxWidth: 1500 }}>
