@@ -24,8 +24,7 @@ const Filters = ({ drawerWidth }) => {
   const [selectedCategory, setSelctedCategory] = React.useState([]);
   const [selectedFoodType, setSelectedFoodType] = React.useState([]);
 
-  const handlePriceRangeChange = (_, newPriceRange) => {
-    const [min, max] = newPriceRange;
+  const handlePriceRangeChange = (_, [min, max]) => {
     if (min === MIN) {
       searchParams.delete('price_gte');
     } else {
@@ -38,7 +37,6 @@ const Filters = ({ drawerWidth }) => {
     }
 
     setSearchParams(searchParams);
-    setPriceRange(newPriceRange);
   };
 
   const handleCategoryChange = (_, newCategory) => {
@@ -85,9 +83,10 @@ const Filters = ({ drawerWidth }) => {
               <Slider
                 valueLabelDisplay="on"
                 value={priceRange}
-                min={0}
-                max={25}
-                onChange={handlePriceRangeChange}
+                onChange={(_, newPriceRange) => setPriceRange(newPriceRange)}
+                onChangeCommitted={handlePriceRangeChange}
+                min={MIN}
+                max={MAX}
               />
             </Box>
           </FormControl>

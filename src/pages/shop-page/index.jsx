@@ -5,6 +5,7 @@ import {
   Container,
   Box,
 } from '@mui/material';
+import { useSearchParams } from 'react-router-dom';
 import CardService from '../../services/card-service';
 import { ItemCard, Filters } from './components';
 
@@ -12,18 +13,20 @@ const drawerWidth = 300;
 
 const ShopPage = () => {
   const [items, setItems] = React.useState([]);
+  const [searchParams] = useSearchParams();
 
-  const handleFetchItems = async () => {
-    const fetchedItems = await CardService.fetchAll();
+  const handleFetchItems = React.useCallback(async () => {
+    const fetchedItems = await CardService.fetchAll(searchParams.toString());
     setItems(fetchedItems);
-  };
+  }, [searchParams]);
 
   const handleUpdateItems = async () => {
     await handleFetchItems();
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  React.useEffect(() => { handleFetchItems(); }, []);
+  React.useEffect(() => {
+    handleFetchItems();
+  }, [handleFetchItems]);
 
   return (
     <Container maxWidth="false" sx={{ top: 0, maxWidth: 1500 }}>
@@ -44,7 +47,9 @@ const ShopPage = () => {
           Thank you...
         </Typography>
       </Box>
+
       <Filters drawerWidth={drawerWidth} />
+
       <Grid container spacing={2} sx={{ py: 3, px: 2 }}>
         {items.map(({
           id,

@@ -6,12 +6,14 @@ import {
   Divider,
   List,
   Drawer,
+  Badge,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from 'react-router-dom';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import * as Nav from './components';
+import CartContext from '../../contexts/cart-context';
 
 const pages = [
   { text: 'HOME', to: '/' },
@@ -22,6 +24,7 @@ const pages = [
 const drawerWidth = 240;
 
 const Navbar = () => {
+  const { cartItemsCount } = React.useContext(CartContext);
   const navigate = useNavigate();
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -92,7 +95,9 @@ const Navbar = () => {
               color="inherit"
               onClick={() => navigate('/cart')}
             >
-              <ShoppingCartIcon />
+              <Badge badgeContent={cartItemsCount} color="secondary">
+                <ShoppingCartIcon />
+              </Badge>
             </IconButton>
             <Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
               <Nav.Link to="/auth/login">
